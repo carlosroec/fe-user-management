@@ -31,6 +31,14 @@ export default {
     FiltersHeader,
     TableComponent,
     TableColumn
+  },
+  methods: {
+    getUsers() {
+      this.$store.dispatch('getUsers');
+    }
+  },
+  mounted() {
+    this.getUsers();
   }
 }
 </script>
