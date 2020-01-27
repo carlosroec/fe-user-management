@@ -1,4 +1,5 @@
 import userDataStore from "../../api/user";
+import { _ } from "core-js";
 
 const state = {
     users: []
@@ -12,16 +13,21 @@ const mutations = {
 
 const actions = {
     getUsers({ commit }) {
-        userDataStore.getUsers()
+        return userDataStore.getUsers()
             .then(users =>  {
-                console.log("AAA", users);
                 commit("SET_USERS", { users });
+                return users;
             })
     }
+}
+
+const getters = {
+    users: _state => _state.users
 }
 
 export default {
     state,
     mutations,
-    actions
+    actions,
+    getters
 }

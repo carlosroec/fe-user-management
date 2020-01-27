@@ -2,10 +2,7 @@
   <div class="home">
     <FiltersHeader />
     <table-component
-      :data="[
-        { enabled: 'true', activated: 'true', name: 'Carlos', usergroup: 'A', email: 'a@a.com', lastVisit: '04/10/1940', registered: '04/10/1940', id: 10 },
-        { enabled: 'true', activated: 'true', name: 'Carlos', usergroup: 'A', email: 'a@a.com', lastVisit: '04/10/1940', registered: '04/10/1940', id: 10 },
-      ]"
+      :data="currentUsers"
       sort-by="songs"
       sort-order="asc"
       >
@@ -22,6 +19,7 @@
 </template>
 
 <script>
+import { mapGetters, mapState } from "vuex";
 import FiltersHeader from '@/components/FiltersHeader.vue';
 import { TableComponent, TableColumn } from 'vue-table-component';
 
@@ -32,9 +30,33 @@ export default {
     TableComponent,
     TableColumn
   },
+  computed: {
+    ...mapGetters({
+      users: "users",
+    })
+  },
+  data() {
+    return {
+      currentUsers: [],
+    }
+  },
   methods: {
     getUsers() {
-      this.$store.dispatch('getUsers');
+      this.$store.dispatch('getUsers').then(users => {
+        this.currentUsers = [];
+        users.response.forEach(user => {
+          this.currentUsers.push({
+            enabled: 'true', 
+            activated: 'true',
+            name: user.name,
+            usergroup: user.usergroup,
+            email: user.email,
+            lastVisit: user.lastVisit ? user.lastVisit : "",
+            createdAt: user.createdAt,
+            id: user.id
+          })
+        })
+      })
     }
   },
   mounted() {
