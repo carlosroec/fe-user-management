@@ -1,19 +1,17 @@
-# fe-user-management
+# USER MANAGEMENT FE
 
-## Project setup
-```
-npm install
-```
+# Stack
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+    Vue
+    Vuex
 
-### Compiles and minifies for production
-```
-npm run build
-```
+# SETUP
+1 Create a .env file at the root of the project
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+2 Add the following variables with you own params
+
+    API_DATA_ROOT='http://localhost:3000/api'
+
+3 Run: npm install
+
+4 Run: npm run serve
