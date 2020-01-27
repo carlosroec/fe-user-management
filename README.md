@@ -1,4 +1,4 @@
-# fe-user-management-1
+# fe-user-management
 
 ## Project setup
 ```
